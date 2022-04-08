@@ -135,6 +135,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public boolean isPersonArchived(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -155,12 +160,22 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public boolean isEventArchived(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasCompany(Name companyName) {
             return true;
         }; // Leave it this way for now
 
         @Override
         public boolean hasCompany(Company company) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isCompanyArchived(Company company) {
             throw new AssertionError("This method should not be called.");
         }
 
