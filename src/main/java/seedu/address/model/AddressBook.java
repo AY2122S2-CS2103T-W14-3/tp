@@ -104,7 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         return persons.isPredicate(person, Person::isArchived);
     }
-    
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.

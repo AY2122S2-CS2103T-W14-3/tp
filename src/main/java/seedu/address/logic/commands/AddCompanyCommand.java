@@ -15,7 +15,7 @@ import seedu.address.model.entry.Company;
  * Adds a company to the address book.
  */
 public class AddCompanyCommand extends Command {
-    
+
     public static final String COMMAND_WORD = "addc";
     public static final String ARCHIVED = "archived";
     public static final String UNARCHIVED = "unarchived";
