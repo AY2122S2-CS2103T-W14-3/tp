@@ -18,6 +18,8 @@ import seedu.address.model.entry.Person;
 public class AddPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "addp";
+    public static final String ARCHIVED = "archived";
+    public static final String UNARCHIVED = "unarchived";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the list of persons.\n"
             + "Parameters: "
@@ -56,7 +58,8 @@ public class AddPersonCommand extends Command {
         }
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            String isArchivedString = model.isPersonArchived(toAdd) ? ARCHIVED : UNARCHIVED;
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, isArchivedString));
         }
 
         model.addPerson(toAdd);

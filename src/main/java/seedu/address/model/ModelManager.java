@@ -116,6 +116,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isPersonArchived(Person person) {
+        requireNonNull(person);
+        return addressBook.isPersonArchived(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -138,6 +144,12 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCompany(Name companyName) {
         return addressBook.hasCompany(Company.createDummyCompany(companyName));
+    }
+
+    @Override
+    public boolean isCompanyArchived(Company company) {
+        requireNonNull(company);
+        return addressBook.isCompanyArchived(company);
     }
 
     @Override
@@ -176,6 +188,12 @@ public class ModelManager implements Model {
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return addressBook.hasEvent(event);
+    }
+
+    @Override
+    public boolean isEventArchived(Event event) {
+        requireNonNull(event);
+        return addressBook.isEventArchived(event);
     }
 
     @Override

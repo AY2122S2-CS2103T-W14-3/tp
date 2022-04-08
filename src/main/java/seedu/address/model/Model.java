@@ -13,6 +13,7 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.Event;
 import seedu.address.model.entry.Name;
 import seedu.address.model.entry.Person;
+import seedu.address.model.entry.exceptions.EntryNotFoundException;
 
 /**
  * The API of the Model component.
@@ -77,6 +78,12 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * If {@code person} exists in the address book, return whether {@code person} is archived or not.
+     * Otherwise, throw an {@code EntryNotFoundException}.
+     */
+    boolean isPersonArchived(Person person) throws EntryNotFoundException;
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -108,6 +115,12 @@ public interface Model {
      * Returns true if a company with the {@code companyName} exists in the address book.
      */
     boolean hasCompany(Name companyName);
+
+    /**
+     * If {@code company} exists in the address book, return whether {@code company} is archived or not.
+     * Otherwise, throw an {@code EntryNotFoundException}.
+     */
+    boolean isCompanyArchived(Company company) throws EntryNotFoundException;
 
     /**
      * Returns true if a company with the same identity as {@code company} exists in the address book.
@@ -147,6 +160,12 @@ public interface Model {
      * Returns true if an event with the same identity as {@code event} exists in the address book.
      */
     boolean hasEvent(Event event);
+
+    /**
+     * If {@code event} exists in the address book, return whether {@code event} is archived or not.
+     * Otherwise, throw an {@code EntryNotFoundException}.
+     */
+    boolean isEventArchived(Event event) throws EntryNotFoundException;
 
     /**
      * Deletes the given event.

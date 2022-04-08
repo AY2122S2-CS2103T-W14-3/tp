@@ -19,6 +19,8 @@ import seedu.address.model.entry.Event;
 public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "adde";
+    public static final String ARCHIVED = "archived";
+    public static final String UNARCHIVED = "unarchived";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the list of events.\n"
             + "Parameters: "
@@ -38,7 +40,8 @@ public class AddEventCommand extends Command {
             + PREFIX_TAG + "coding";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the list of events.";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the list of events."
+            + " (currently event is %1$s)";
 
     private final Event toAdd;
 
@@ -59,7 +62,8 @@ public class AddEventCommand extends Command {
         }
 
         if (model.hasEvent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+            String isArchivedString = model.isEventArchived(toAdd) ? ARCHIVED : UNARCHIVED;
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_EVENT, isArchivedString));
         }
 
         model.addEvent(toAdd);

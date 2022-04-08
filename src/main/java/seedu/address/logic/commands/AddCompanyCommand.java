@@ -16,6 +16,8 @@ import seedu.address.model.entry.Company;
  */
 public class AddCompanyCommand extends Command {
     public static final String COMMAND_WORD = "addc";
+    public static final String ARCHIVED = "archived";
+    public static final String UNARCHIVED = "unarchived";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a company to the list of companies.\n"
             + "Parameters: "
@@ -33,7 +35,8 @@ public class AddCompanyCommand extends Command {
             + PREFIX_TAG + "hiring";
 
     public static final String MESSAGE_SUCCESS = "New company added: %1$s";
-    public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in the list of companies.";
+    public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in the list of companies."
+            + " (currently company is %1$s)";
 
     private final Company toAdd;
 
@@ -50,7 +53,9 @@ public class AddCompanyCommand extends Command {
         requireNonNull(model);
 
         if (model.hasCompany(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
+            String isArchivedString = model.isCompanyArchived(toAdd) ? ARCHIVED : UNARCHIVED;
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_COMPANY
+                , isArchivedString));
         }
 
         model.addCompany(toAdd);

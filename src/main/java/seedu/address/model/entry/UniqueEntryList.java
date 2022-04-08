@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +36,16 @@ public class UniqueEntryList<T extends Entry> implements Iterable<T> {
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameEntry);
+    }
+
+    /**
+     * Returns true if the given entry satisfies the predicate.
+     * @throws EntryNotFoundException if the entry is not found
+     */
+    public boolean isPredicate(T toCheck, Predicate<T> predicate) throws EntryNotFoundException {
+        requireNonNull(toCheck);
+        requireNonNull(predicate);
+        return internalList.stream().anyMatch(x -> x.isSameEntry(toCheck) && predicate.test(x));
     }
 
     /**

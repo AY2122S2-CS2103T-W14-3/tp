@@ -11,6 +11,7 @@ import seedu.address.model.entry.Company;
 import seedu.address.model.entry.Event;
 import seedu.address.model.entry.Person;
 import seedu.address.model.entry.UniqueEntryList;
+import seedu.address.model.entry.exceptions.EntryNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -93,6 +94,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * If {@code person} exists in the address book, return whether {@code person} is archived or not.
+     * Otherwise, throw an {@code EntryNotFoundException}.
+     */
+    public boolean isPersonArchived(Person person) {
+        requireNonNull(person);
+        if (!hasPerson(person)) {
+            throw new EntryNotFoundException();
+        }
+        return persons.isPredicate(person, Person::isArchived);
+    }
+    
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -135,6 +148,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasCompany(Company company) {
         requireNonNull(company);
         return companies.contains(company);
+    }
+
+    /**
+     * If {@code company} exists in the address book, return whether {@code company} is archived or not.
+     * Otherwise, throw an {@code EntryNotFoundException}.
+     */
+    public boolean isCompanyArchived(Company company) {
+        requireNonNull(company);
+        if (!hasCompany(company)) {
+            throw new EntryNotFoundException();
+        }
+        return companies.isPredicate(company, Company::isArchived);
     }
 
     /**
@@ -181,6 +206,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return events.contains(event);
+    }
+
+    /**
+     * If {@code event} exists in the address book, return whether {@code event} is archived or not.
+     * Otherwise, throw an {@code EntryNotFoundException}.
+     */
+    public boolean isEventArchived(Event event) {
+        requireNonNull(event);
+        if (!hasEvent(event)) {
+            throw new EntryNotFoundException();
+        }
+        return events.isPredicate(event, Event::isArchived);
     }
 
     /**
