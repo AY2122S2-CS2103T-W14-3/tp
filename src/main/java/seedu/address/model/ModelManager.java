@@ -147,15 +147,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isCompanyArchived(Company company) {
-        requireNonNull(company);
-        return addressBook.isCompanyArchived(company);
-    }
-
-    @Override
     public boolean hasCompany(Company company) {
         requireNonNull(company);
         return addressBook.hasCompany(company);
+    }
+
+    @Override
+    public boolean isCompanyArchived(Company company) {
+        requireNonNull(company);
+        return addressBook.isCompanyArchived(company);
     }
 
     @Override

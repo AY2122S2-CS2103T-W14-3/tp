@@ -117,15 +117,15 @@ public interface Model {
     boolean hasCompany(Name companyName);
 
     /**
+     * Returns true if a company with the same identity as {@code company} exists in the address book.
+     */
+    boolean hasCompany(Company company);
+
+    /**
      * If {@code company} exists in the address book, return whether {@code company} is archived or not.
      * Otherwise, throw an {@code EntryNotFoundException}.
      */
     boolean isCompanyArchived(Company company) throws EntryNotFoundException;
-
-    /**
-     * Returns true if a company with the same identity as {@code company} exists in the address book.
-     */
-    boolean hasCompany(Company company);
 
     /**
      * Deletes the given company.
