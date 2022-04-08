@@ -54,8 +54,7 @@ public class AddCompanyCommand extends Command {
 
         if (model.hasCompany(toAdd)) {
             String isArchivedString = model.isCompanyArchived(toAdd) ? ARCHIVED : UNARCHIVED;
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_COMPANY
-                , isArchivedString));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_COMPANY, isArchivedString));
         }
 
         model.addCompany(toAdd);
