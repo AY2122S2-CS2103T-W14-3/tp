@@ -51,9 +51,10 @@ public class AddPersonCommandTest {
         Person validPerson = new PersonBuilder().build();
         AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        String expectedMessage = String.format(AddPersonCommand.MESSAGE_DUPLICATE_PERSON, "archived");
 
         assertThrows(CommandException.class,
-                AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> addPersonCommand.execute(modelStub));
+                expectedMessage, () -> addPersonCommand.execute(modelStub));
     }
 
     @Test
