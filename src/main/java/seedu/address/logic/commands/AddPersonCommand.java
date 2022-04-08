@@ -37,7 +37,8 @@ public class AddPersonCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the list of persons.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the list of persons."
+            + " (currently person is %1$s)";
 
     private final Person toAdd;
 
