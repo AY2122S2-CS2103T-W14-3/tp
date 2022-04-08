@@ -51,7 +51,7 @@ public class AddPersonCommandTest {
         Person validPerson = new PersonBuilder().build();
         AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
-        String expectedMessage = String.format(AddPersonCommand.MESSAGE_DUPLICATE_PERSON, "unarchived");
+        String expectedMessage = String.format(AddPersonCommand.MESSAGE_DUPLICATE_PERSON, AddPersonCommand.UNARCHIVED);
 
         assertThrows(CommandException.class,
                 expectedMessage, () -> addPersonCommand.execute(modelStub));
@@ -296,6 +296,12 @@ public class AddPersonCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSameEntry(person);
+        }
+
+        @Override
+        public boolean isPersonArchived(Person person) {
+            requireNonNull(person);
+            return this.person.isArchived();
         }
     }
 
